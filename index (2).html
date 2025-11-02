@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Akansha — Will You Be Mine?</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+  /* ---------- Basic layout ---------- */
+  :root{
+    --bg-dark:#0b0610;
+    --bg-deep:#120612;
+    --rose-1:#ff5c9e; /* bright rose */
+    --rose-2:#9b1646; /* deep wine */
+    --glow: 0 8px 40px rgba(155,22,70,0.35);
+  }
+  html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;}
+  body{
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(155,22,70,0.10), transparent 12%),
+                radial-gradient(900px 500px at 90% 90%, rgba(255,92,158,0.06), transparent 12%),
+                linear-gradient(180deg,var(--bg-dark),var(--bg-deep));
+    color:#f8eef6;
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* ---------- Container ---------- */
+  .wrap{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px 16px;
+    box-sizing:border-box;
+  }
+  .card{
+    width:min(820px,94%);
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,92,158,0.08);
+    border-radius:20px;
+    padding:34px;
+    box-shadow: var(--glow);
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* ---------- Decorative cinematic frame ---------- */
+  .card::before {
+    content:"";
+    position:absolute; inset:0;
+    pointer-events:none;
+    border-radius:20px;
+    box-shadow: inset 0 0 120px rgba(155,22,70,0.06);
+    mix-blend-mode:screen;
+  }
+
+  /* ---------- Heading & message ---------- */
+  h1{
+    margin:0;
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size: clamp(28px, 4.8vw, 44px);
+    letter-spacing: -0.02em;
+    color: linear-gradient(90deg,#fff,#f8eef6);
+    text-align:left;
+    color: #ffd9ea;
+    text-shadow: 0 6px 30px rgba(155,22,70,0.25);
+  }
+  .subtitle{
+    margin-top:6px;
+    font-family:'Great Vibes', cursive;
+    font-size: clamp(20px, 3.2vw, 32px);
+    color:#ffb3d7;
+    opacity:0.95;
+    text-shadow: 0 6px 24px rgba(155,22,70,0.12);
+  }
+
+  .content{
+    display:grid;
+    grid-template-columns: 1fr 340px;
+    gap:28px;
+    margin-top:20px;
+    align-items:start;
+  }
+
+  /* message box */
+  .message{
+    background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(255,255,255,0.02));
+    border-radius:12px;
+    padding:18px;
+    font-size:16px;
+    line-height:1.6;
+    color:#f6eaf0;
+    border:1px solid rgba(155,22,70,0.06);
+    min-height:220px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* typewriter effect text area */
+  .typed { white-space:pre-wrap; font-family:'Poppins',sans-serif; }
+
+  /* signature */
+  .signature{
+    margin-top:16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .sig-name{
+    font-family:'Great Vibes',cursive;
+    font-size:26px;
+    color:#ffb6d9;
+    text-shadow:0 8px 30px rgba(155,22,70,0.18);
+  }
+  .sig-small{ font-size:13px; color:#e7cbd8; opacity:0.9; }
+
+  /* right column (visual & buttons) */
+  .visual{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+    text-align:center;
+  }
+  .portrait{
+    width:220px;height:220px;border-radius:14px;
+    background:linear-gradient(180deg, rgba(255,92,158,0.14), rgba(155,22,70,0.06));
+    border: 1px solid rgba(255,92,158,0.08);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.6);
+    position:relative;
+    overflow:hidden;
+  }
+  .portrait .rose{
+    font-size:70px;
+    transform:translateY(6px);
+    opacity:0.92;
+    filter:drop-shadow(0 20px 40px rgba(155,22,70,0.4));
+  }
+  .caption{ font-size:14px;color:#f2d9e6; opacity:0.9; }
+
+  /* Buttons */
+  .actions{display:flex;gap:12px;margin-top:10px;align-items:center;justify-content:center;}
+  .btn{
+    padding:12px 22px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,0.06);
+    cursor:pointer;
+    font-weight:600;
+    font-size:15px;
+    min-width:140px;
+    transition: transform .18s ease, box-shadow .18s ease;
+    backdrop-filter: blur(6px);
+  }
+  .btn-yes{
+    background:linear-gradient(180deg,#ff577f,#c71b4c);
+    color:white;
+    box-shadow: 0 10px 30px rgba(199,27,76,0.25);
+  }
+  .btn-yes:hover{ transform:translateY(-6px) scale(1.02); box-shadow: 0 18px 48px rgba(199,27,76,0.36); }
+
+  .btn-no{
+    background:transparent;
+    color:#ffdbe9;
+    border:1px solid rgba(255,92,158,0.12);
+    position:relative;
+  }
+
+  /* Response text area */
+  .response{ margin-top:14px; color:#ffcbe5; font-style:italic; min-height:44px; }
+
+  /* ---------- Floating petals / hearts ---------- */
+  .particle-layer{
+    position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+  }
+  .petal{
+    position:absolute; width:18px;height:18px; transform-origin:center;
+    font-size:18px; opacity:0.95; will-change: transform, top, left;
+    animation: drift linear infinite;
+  }
+  @keyframes drift{
+    0%{ transform: translateY(-10vh) rotate(0deg) scale(0.9); opacity:0.95; }
+    100%{ transform: translateY(120vh) rotate(720deg) scale(1.1); opacity:0.02; }
+  }
+
+  /* ---------- Modal (Yes) ---------- */
+  .modal-back{
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+    background:linear-gradient(rgba(4,2,6,0.7), rgba(4,2,6,0.95));
+    z-index:40;
+  }
+  .modal-card{
+    width:min(680px,94%); border-radius:16px; padding:28px;
+    background:linear-gradient(180deg, rgba(255,92,158,0.06), rgba(255,255,255,0.02));
+    border:1px solid rgba(255,92,158,0.12);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    text-align:center;
+  }
+  .modal-card h2{
+    font-family:'Playfair Display'; margin:0; font-size:28px; color:#ffdbe9;
+  }
+  .modal-card p{ margin-top:12px; color:#f8d6e6; font-size:17px; line-height:1.6; }
+
+  .close-x{
+    position:absolute; right:22px; top:18px; color:#f7cfe1; cursor:pointer; font-size:20px;
+  }
+
+  /* ---------- small screens ---------- */
+  @media (max-width:880px){
+    .content{ grid-template-columns:1fr; }
+    .portrait{ width:190px; height:190px; margin:0 auto; }
+    .actions{ flex-direction:column; gap:10px; }
+  }
+</style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="card" role="main" aria-labelledby="title">
+      <!-- particle layer -->
+      <div class="particle-layer" id="particles"></div>
+
+      <header>
+        <h1 id="title">Akansha — my only obsession</h1>
+        <div class="subtitle">a question i must ask, under dark roses and honest lights</div>
+      </header>
+
+      <div class="content" style="position:relative; z-index:2;">
+        <!-- left: message -->
+        <div>
+          <div class="message" aria-live="polite">
+            <div id="typedText" class="typed"></div>
+
+            <div class="signature">
+              <div class="sig-name">— Krishna</div>
+              <div class="sig-small">(always yours)</div>
+            </div>
+          </div>
+
+          <div class="response" id="responseText"></div>
+        </div>
+
+        <!-- right: portrait + buttons -->
+        <aside class="visual" aria-hidden="false">
+          <div class="portrait" aria-hidden="true">
+            <div class="rose">🌹</div>
+          </div>
+          <div class="caption">Will you let me call you mine?</div>
+
+          <div class="actions">
+            <button class="btn btn-yes" id="yesBtn" aria-label="Say Yes">Yes — I do</button>
+            <button class="btn btn-no" id="noBtn" aria-label="Maybe Later">Maybe later</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal -->
+  <div class="modal-back" id="modal">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="close-x" id="modalClose" title="Close">&times;</div>
+      <h2 id="modalTitle">You said yes!</h2>
+      <p>My love, I will always be yours... Let's marry each other soon 👅👅</p>
+      <div style="margin-top:18px;">
+        <button class="btn btn-yes" id="confirmBtn">Forever & Always</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* ---------- Typewriter / reveal ---------- */
+const fullMessage = [
+  "From the first day I saw you, something changed — the world darkened and only you shone.\n\n",
+  "You laugh and the night learns a new melody. You walk and the stars move to watch. You exist and I find purpose in the chaos.\n\n",
+  "I won't hide the truth: I am yours if you'll have me. Not just for a day, but for every midnight and every quiet dawn.\n\n",
+  "Akansha — will you be my girlfriend?"
+].join('');
+
+const typedEl = document.getElementById('typedText');
+let idx = 0;
+let typingSpeed = 26; // slower for cinematic effect
+
+function typeStep(){
+  if(idx <= fullMessage.length){
+    typedEl.textContent = fullMessage.slice(0, idx);
+    idx++;
+    setTimeout(typeStep, typingSpeed);
+  } else {
+    // subtle highlight at the final question
+    const resp = document.getElementById('responseText');
+    resp.textContent = "Choose gently, my queen.";
+  }
+}
+setTimeout(typeStep, 700);
+
+/* ---------- Particles: petals/hearts ---------- */
+const particles = document.getElementById('particles');
+const symbols = ['🌹','❤️','🖤'];
+function spawnParticle(){
+  const el = document.createElement('div');
+  el.className = 'petal';
+  el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+  const startLeft = Math.random()*100;
+  el.style.left = startLeft + 'vw';
+  el.style.top = (-8 - Math.random()*8) + 'vh';
+  const size = 12 + Math.random()*24;
+  el.style.fontSize = size+'px';
+  el.style.opacity = 0.9 - Math.random()*0.4;
+  const dur = 8 + Math.random()*12;
+  el.style.animationDuration = dur + 's';
+  el.style.transform = `translateY(0) rotate(${Math.random()*40}deg)`;
+  particles.appendChild(el);
+  // cleanup
+  setTimeout(()=> el.remove(), (dur*1000)+500);
+}
+// spawn gradually
+setInterval(spawnParticle, 420);
+
+/* ---------- 'Maybe' button dodge logic ---------- */
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+let dodgeCount = 0;
+const maxDodges = 6;
+
+// helper: random within viewport boundaries
+function placeButtonAway(btn){
+  const safePad = 18;
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  const btnRect = btn.getBoundingClientRect();
+  const maxX = Math.max(safePad, w - btnRect.width - safePad);
+  const maxY = Math.max(safePad, h - btnRect.height - safePad);
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+  btn.style.position = 'absolute';
+  btn.style.left = x + 'px';
+  btn.style.top = y + 'px';
+  btn.style.transition = 'left 0.32s cubic-bezier(.2,.9,.2,1), top 0.32s cubic-bezier(.2,.9,.2,1)';
+}
+
+// For mouse users: dodge on mouseenter
+noBtn.addEventListener('mouseenter', (e)=>{
+  dodgeCount++;
+  if(dodgeCount <= maxDodges){
+    placeButtonAway(noBtn);
+    document.getElementById('responseText').textContent = [
+      "Aren't you dramatic? 😏",
+      "Just one hug, please... 🥀",
+      "I'll wait forever, but my heart won't.",
+      "If you run, I'll chase — politely.",
+      "You're making me a poet and a fool."
+    ][Math.min(dodgeCount-1,4)];
+  } else {
+    // after many dodges, make it fade away and auto-open yes modal
+    noBtn.style.opacity = 0;
+    noBtn.style.pointerEvents = 'none';
+    document.getElementById('responseText').textContent = "Looks like 'maybe' can't hide. Fate says yes.";
+    setTimeout(()=> openModal(), 1000);
+  }
+});
+
+// For touch users: dodge on touchstart
+noBtn.addEventListener('touchstart', (e)=>{
+  e.preventDefault();
+  dodgeCount++;
+  if(dodgeCount <= maxDodges){
+    placeButtonAway(noBtn);
+    document.getElementById('responseText').textContent = "You almost had it... try again.";
+  } else {
+    noBtn.style.opacity = 0;
+    noBtn.style.pointerEvents = 'none';
+    document.getElementById('responseText').textContent = "Destiny takes the wheel.";
+    setTimeout(()=> openModal(), 1000);
+  }
+});
+
+/* ---------- Yes button opens modal ---------- */
+function openModal(){
+  const modal = document.getElementById('modal');
+  modal.style.display = 'flex';
+  // small focus trap
+  document.getElementById('confirmBtn').focus();
+}
+yesBtn.addEventListener('click', ()=> {
+  openModal();
+  document.getElementById('responseText').textContent = "You made me the luckiest — say yes and never look back.";
+});
+
+/* ---------- modal close ---------- */
+document.getElementById('modalClose').addEventListener('click', ()=> {
+  document.getElementById('modal').style.display = 'none';
+});
+
+// Confirm button -> gentle final message (replace modal content)
+document.getElementById('confirmBtn').addEventListener('click', ()=>{
+  const card = document.querySelector('.modal-card');
+  card.innerHTML = `<h2>Forever begins now</h2>
+    <p>Akansha — thank you for saying yes. I will guard you like a secret and love you like a legend. Meet me where the night is quiet and the roses remember our names.</
